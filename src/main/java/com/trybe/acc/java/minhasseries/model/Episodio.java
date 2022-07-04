@@ -23,7 +23,7 @@ public class Episodio {
   private Serie serie;
 
   /**
-   *
+   * Instantiates a new episodio.
    */
   public Episodio() {
     super();
@@ -31,8 +31,10 @@ public class Episodio {
   }
 
   /**
-   * @param numero
-   * @param duracaoEmMinutos
+   * Instantiates a new episodio with 2 parameters.
+   *
+   * @param numero           the numero
+   * @param duracaoEmMinutos the duracao em minutos
    */
   public Episodio(Integer numero, Integer duracaoEmMinutos) {
     super();
@@ -41,10 +43,12 @@ public class Episodio {
   }
 
   /**
-   * @param id
-   * @param numero
-   * @param duracaoEmMinutos
-   * @param serie
+   * Instantiates a new episodio with 4 parameters.
+   *
+   * @param id               the id
+   * @param numero           the numero
+   * @param duracaoEmMinutos the duracao em minutos
+   * @param serie            the serie
    */
   public Episodio(Integer id, Integer numero, Integer duracaoEmMinutos,
       Serie serie) {
