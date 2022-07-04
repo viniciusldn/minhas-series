@@ -21,8 +21,8 @@ public class Serie {
   /** The nome. */
   private String nome;
 
-  /** The episodio. */
-  private ArrayList<Episodio> episodio;
+  /** The episodios. */
+  private ArrayList<Episodio> episodios;
 
   /**
    * Instantiates a new serie.
@@ -33,17 +33,27 @@ public class Serie {
   }
 
   /**
-   * Contructor.
+   * Instantiates a new serie.
    *
-   * @param id       the id
-   * @param nome     the nome
-   * @param episodio the episodio
+   * @param nome the nome
    */
-  public Serie(int id, String nome, ArrayList<Episodio> episodio) {
+  public Serie(String nome) {
+    super();
+    this.nome = nome;
+  }
+
+  /**
+   * Instantiates a new serie.
+   *
+   * @param id        the id
+   * @param nome      the nome
+   * @param episodios the episodios
+   */
+  public Serie(int id, String nome, ArrayList<Episodio> episodios) {
     super();
     this.id = id;
     this.nome = nome;
-    this.episodio = episodio;
+    this.episodios = episodios;
   }
 
   /**
@@ -87,17 +97,21 @@ public class Serie {
    *
    * @return the episodio
    */
-  public ArrayList<Episodio> getEpisodio() {
-    return episodio;
+  public ArrayList<Episodio> getEpisodios() {
+    return this.episodios;
   }
 
   /**
    * Sets the episodio.
    *
-   * @param episodio the new episodio
+   * @param episodios the new episodios
    */
-  public void setEpisodio(ArrayList<Episodio> episodio) {
-    this.episodio = episodio;
+  public void setEpisodios(ArrayList<Episodio> episodios) {
+    this.episodios = episodios;
+  }
+
+  public void adicionarEpisodio(Episodio episodio) {
+    this.episodios.add(episodio);
   }
 
 }
