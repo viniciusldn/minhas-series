@@ -13,6 +13,7 @@ public class Episodio {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
+
   private Integer numero;
 
   /** The duracao em minutos. */
@@ -60,7 +61,7 @@ public class Episodio {
   }
 
   public Integer getId() {
-    return id;
+    return this.id;
   }
 
   /**
@@ -73,7 +74,7 @@ public class Episodio {
   }
 
   public Integer getNumero() {
-    return numero;
+    return this.numero;
   }
 
   public void setNumero(Integer numero) {
@@ -81,15 +82,11 @@ public class Episodio {
   }
 
   public Integer getDuracaoEmMinutos() {
-    return duracaoEmMinutos;
+    return this.duracaoEmMinutos;
   }
 
   public void setDuracaoEmMinutos(Integer duracaoEmMinutos) {
     this.duracaoEmMinutos = duracaoEmMinutos;
-  }
-
-  public Serie getSerie() {
-    return serie;
   }
 
   public void setSerie(Serie serie) {

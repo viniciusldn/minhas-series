@@ -5,5 +5,5 @@ resilience4j.circuitbreaker:
       failureRateThreshold: 50
       minimumNumberOfCalls: 2
   instances:
-    episodios:
+    episodio:
       baseConfig: default
