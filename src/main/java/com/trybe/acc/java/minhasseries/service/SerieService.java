@@ -91,6 +91,11 @@ public class SerieService {
     return findEpisodio.getEpisodios();
   }
 
+  /**
+   * Tempo series.
+   *
+   * @return the tempo
+   */
   public Tempo tempoSeries() {
     Integer tempoTotal = repo.findAll().stream().map(Serie::tempoTotal)
         .reduce(0, (total, minutos) -> total + minutos);

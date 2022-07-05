@@ -1,10 +1,14 @@
 package com.trybe.acc.java.minhasseries.model;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -22,6 +26,7 @@ public class Serie {
   private String nome;
 
   /** The episodios. */
+  @OneToMany(mappedBy = "serie", orphanRemoval = true, cascade = CascadeType.ALL)
   private ArrayList<Episodio> episodios;
 
   /**
@@ -43,19 +48,10 @@ public class Serie {
   }
 
   /**
-   * Instantiates a new serie.
+   * Tempo total.
    *
-   * @param id        the id
-   * @param nome      the nome
-   * @param episodios the episodios
+   * @return the integer
    */
-  public Serie(int id, String nome, ArrayList<Episodio> episodios) {
-    super();
-    this.id = id;
-    this.nome = nome;
-    this.episodios = episodios;
-  }
-
   public Integer tempoTotal() {
     return episodios.stream().map(Episodio::getDuracaoEmMinutos).reduce(0,
         (total, minutos) -> total + minutos);
@@ -67,7 +63,7 @@ public class Serie {
    * @return the id
    */
   public int getId() {
-    return id;
+    return this.id;
   }
 
   /**
@@ -85,7 +81,7 @@ public class Serie {
    * @return the nome
    */
   public String getNome() {
-    return nome;
+    return this.nome;
   }
 
   /**
@@ -102,21 +98,21 @@ public class Serie {
    *
    * @return the episodio
    */
-  public ArrayList<Episodio> getEpisodios() {
+  public List<Episodio> getEpisodios() {
     return this.episodios;
   }
 
   /**
-   * Sets the episodio.
+   * Adicionar episodio.
    *
-   * @param episodios the new episodios
+   * @param episodio the episodio
    */
-  public void setEpisodios(ArrayList<Episodio> episodios) {
-    this.episodios = episodios;
-  }
-
   public void adicionarEpisodio(Episodio episodio) {
     this.episodios.add(episodio);
+  }
+
+  public void removerEpisodio(int episodioId) {
+    episodios.remove(episodioId);
   }
 
 }
