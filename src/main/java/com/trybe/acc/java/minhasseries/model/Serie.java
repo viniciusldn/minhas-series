@@ -56,6 +56,11 @@ public class Serie {
     this.episodios = episodios;
   }
 
+  public Integer tempoTotal() {
+    return episodios.stream().map(Episodio::getDuracaoEmMinutos).reduce(0,
+        (total, minutos) -> total + minutos);
+  }
+
   /**
    * Gets the id.
    *

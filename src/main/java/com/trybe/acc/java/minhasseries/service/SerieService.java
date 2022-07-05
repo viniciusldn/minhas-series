@@ -1,5 +1,6 @@
 package com.trybe.acc.java.minhasseries.service;
 
+import com.trybe.acc.java.minhasseries.domain.Tempo;
 import com.trybe.acc.java.minhasseries.exception.AlreadyExistsException;
 import com.trybe.acc.java.minhasseries.exception.NotFoundException;
 import com.trybe.acc.java.minhasseries.model.Episodio;
@@ -49,7 +50,7 @@ public class SerieService {
    */
   public void delete(Integer serieId) {
     repo.findById(serieId)
-        .orElseThrow(() -> new NotFoundException("Serie não encontrada"));
+        .orElseThrow(() -> new NotFoundException("Série não encontrada"));
     repo.deleteById(serieId);
   }
 
@@ -66,8 +67,14 @@ public class SerieService {
    * @return the serie
    */
   public Serie addEpisode(Integer serieId, Episodio episodio) {
-    // TODO Auto-generated method stub
-    return null;
+    return repo.findById(serieId).map(serie -> {
+      if (serie.getEpisodios().contains(episodio)) {
+        throw new AlreadyExistsException("Episódio Existente");
+      }
+      episodio.setSerie(serie);
+      serie.adicionarEpisodio(episodio);
+      return repo.save(serie);
+    }).orElseThrow(() -> new NotFoundException(""));
   }
 
   /**
@@ -77,12 +84,17 @@ public class SerieService {
    * @return the list
    */
   public List<Episodio> listEpisodes(Integer serieId) {
-    // TODO Auto-generated method stub
-    return null;
+    Serie findEpisodio = repo.findById(serieId).orElse(null);
+    if (findEpisodio == null) {
+      throw new AlreadyExistsException("Episódio Não Existente");
+    }
+    return findEpisodio.getEpisodios();
   }
-  /*
-   * public Tempo tempoSeries() { // TODO Auto-generated method stub return
-   * null; }
-   */
+
+  public Tempo tempoSeries() {
+    Integer tempoTotal = repo.findAll().stream().map(Serie::tempoTotal)
+        .reduce(0, (total, minutos) -> total + minutos);
+    return new Tempo(tempoTotal);
+  }
 
 }

@@ -1,5 +1,6 @@
 package com.trybe.acc.java.minhasseries.controller;
 
+import com.trybe.acc.java.minhasseries.domain.Tempo;
 import com.trybe.acc.java.minhasseries.exception.DataErrorException;
 import com.trybe.acc.java.minhasseries.exception.NotFoundException;
 import com.trybe.acc.java.minhasseries.model.Episodio;
@@ -73,10 +74,10 @@ public class SerieController {
     return ResponseEntity.status(HttpStatus.OK).body(serieAtualizada);
   }
 
-  /*
-   * @GetMapping("/series/tempo") public ResponseEntity<Tempo> tempoSeries() {
-   * Tempo serieAtualizada = service.tempoSeries(); return
-   * ResponseEntity.status(HttpStatus.OK).body(serieAtualizada); }
-   */
+  @GetMapping("/series/tempo")
+  public ResponseEntity<Tempo> tempoSeries() {
+    Tempo serieAtualizada = service.tempoSeries();
+    return ResponseEntity.status(HttpStatus.OK).body(serieAtualizada);
+  }
 
 }
