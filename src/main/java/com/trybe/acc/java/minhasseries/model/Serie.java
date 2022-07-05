@@ -1,8 +1,6 @@
 package com.trybe.acc.java.minhasseries.model;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,14 +18,14 @@ public class Serie {
   /** The id. */
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer id;
+  private int id;
 
   /** The nome. */
   private String nome;
 
   /** The episodios. */
   @OneToMany(mappedBy = "serie", orphanRemoval = true, cascade = CascadeType.ALL)
-  private ArrayList<Episodio> episodios;
+  private List<Episodio> episodios;
 
   /**
    * Instantiates a new serie.
@@ -111,6 +109,11 @@ public class Serie {
     this.episodios.add(episodio);
   }
 
+  /**
+   * Remover episodio.
+   *
+   * @param episodioId the episodio id
+   */
   public void removerEpisodio(int episodioId) {
     episodios.remove(episodioId);
   }
